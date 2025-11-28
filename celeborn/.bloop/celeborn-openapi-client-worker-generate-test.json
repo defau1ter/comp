@@ -1,0 +1,218 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "celeborn-openapi-client-worker-generate-test",
+        "directory": "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker",
+        "workspaceDir": "/Users/gajananmishra/dummy/celeborn",
+        "sources": [
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/scala",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/scala-2.12",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/scala-2",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/java",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/protobuf",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/target/scala-2.12/src_managed/test"
+        ],
+        "dependencies": [
+            "celeborn-openapi-client-worker-generate"
+        ],
+        "classpath": [
+            "/Users/gajananmishra/dummy/celeborn/.bloop/celeborn-openapi-client-worker-generate/scala-2.12/classes",
+            "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-library.jar"
+        ],
+        "out": "/Users/gajananmishra/dummy/celeborn/.bloop/celeborn-openapi-client-worker-generate",
+        "classesDir": "/Users/gajananmishra/dummy/celeborn/.bloop/celeborn-openapi-client-worker-generate/scala-2.12/test-classes",
+        "resources": [
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/resources",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/src/test/protobuf",
+            "/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker/target/scala-2.12/resource_managed/test"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.12.18",
+            "options": [
+                "-target:jvm-1.8"
+            ],
+            "jars": [
+                "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-library.jar",
+                "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-compiler.jar",
+                "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-reflect.jar",
+                "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-xml_2.12-2.1.0.jar"
+            ],
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                "-encoding",
+                "UTF-8",
+                "-source",
+                "1.8",
+                "-g",
+                "-target",
+                "1.8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "zio.test.sbt.ZTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "weaver.framework.CatsEffect"
+                    ]
+                },
+                {
+                    "names": [
+                        "hedgehog.sbt.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    },
+                    {
+                        "args": [
+                            "-oDF"
+                        ]
+                    },
+                    {
+                        "args": [
+                            "-oF"
+                        ]
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/opt/homebrew/Cellar/openjdk@11/11.0.29/libexec/openjdk.jdk/Contents/Home",
+                "options": [
+                    "-Duser.dir=/Users/gajananmishra/dummy/celeborn/openapi/openapi-client/target/worker",
+                    "-Xmx4g",
+                    "-Xmx4g",
+                    "-XX:+IgnoreUnrecognizedVMOptions",
+                    "--add-exports=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED",
+                    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+                    "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED",
+                    "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+                    "--add-opens=java.base/java.io=ALL-UNNAMED",
+                    "--add-opens=java.base/java.net=ALL-UNNAMED",
+                    "--add-opens=java.base/java.nio=ALL-UNNAMED",
+                    "--add-opens=java.base/java.util=ALL-UNNAMED",
+                    "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED",
+                    "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED",
+                    "--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED",
+                    "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED",
+                    "--add-opens=java.base/sun.nio.cs=ALL-UNNAMED",
+                    "--add-opens=java.base/sun.security.action=ALL-UNNAMED",
+                    "--add-opens=java.base/sun.util.calendar=ALL-UNNAMED",
+                    "--add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED",
+                    "-Dio.netty.tryReflectionSetAccessible=true",
+                    "-Xmx4g",
+                    "-Dspark.shuffle.sort.io.plugin.class=org.apache.spark.shuffle.sort.io.LocalDiskShuffleDataIO",
+                    "-Dspark.ui.enabled=false"
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.18",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-library.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/Users/gajananmishra/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.18",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/Users/gajananmishra/.sbt/boot/scala-2.12.18/lib/scala-library.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/Users/gajananmishra/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.18/scala-library-2.12.18-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "test"
+        ]
+    }
+}
