@@ -1,0 +1,256 @@
+// Licensed to the Apache Software Foundation (ASF) under one or more
+// contributor license agreements.  See the NOTICE file distributed with
+// this work for additional information regarding copyright ownership.
+// The ASF licenses this file to You under the Apache License, Version 2.0
+// (the "License"); you may not use this file except in compliance with
+// the License.  You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+option java_package = "org.apache.celeborn.service.deploy.master.clustermeta";
+option java_outer_classname = "ResourceProtos";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+package deploy.master.meta;
+
+enum Type {
+  Unknown = 0;
+  UnRegisterShuffle = 12;
+  RequestSlots = 13;
+
+  AppHeartbeat = 15;
+  AppLost = 16;
+  WorkerLost = 17;
+  WorkerHeartbeat = 18;
+  RegisterWorker = 19;
+  ReportWorkerUnavailable = 20;
+  UpdatePartitionSize = 21;
+  RemoveWorkersUnavailableInfo = 23;
+  WorkerExclude = 24;
+  WorkerEvent = 25;
+  ApplicationMeta = 26;
+  ReportWorkerDecommission = 27;
+  BatchUnRegisterShuffle = 28;
+
+  ReviseLostShuffles = 29;
+
+  RegisterApplicationInfo = 30;
+}
+
+enum WorkerEventType {
+  // refer to TransportMessages.proto.PbWorkerEvent.EventType
+  None = 0;
+  Immediately = 1; // Immediately exit
+  Decommission = 2; // from normal to decommission, then exit
+  DecommissionThenIdle = 3; // from normal to decommission and keep alive
+  Graceful = 4; // from normal to graceful, then exit
+  Recommission = 5; // -> from InDecommissionThenIdle/Idle state to Normal
+}
+
+message ResourceRequest {
+  Type cmdType = 1; // Type of the command
+
+  optional string requestId = 2;
+
+  optional RequestSlotsRequest requestSlotsRequest = 10;
+  optional UnregisterShuffleRequest unregisterShuffleRequest = 12;
+  optional AppHeartbeatRequest appHeartbeatRequest = 13;
+  optional AppLostRequest appLostRequest = 14;
+  optional WorkerLostRequest workerLostRequest = 15;
+  optional WorkerHeartbeatRequest workerHeartbeatRequest = 16;
+  optional RegisterWorkerRequest registerWorkerRequest = 17;
+  optional ReportWorkerUnavailableRequest reportWorkerUnavailableRequest = 18;
+  optional RemoveWorkersUnavailableInfoRequest removeWorkersUnavailableInfoRequest = 20;
+  optional WorkerExcludeRequest workerExcludeRequest = 21;
+  optional WorkerEventRequest workerEventRequest = 22;
+  optional ApplicationMetaRequest applicationMetaRequest = 23;
+  optional ReportWorkerDecommissionRequest reportWorkerDecommissionRequest = 24;
+  optional BatchUnregisterShuffleRequest batchUnregisterShuffleRequest = 25;
+  optional RegisterApplicationInfoRequest registerApplicationInfoRequest = 26;
+  optional ReviseLostShufflesRequest reviseLostShufflesRequest = 102;
+}
+
+message DiskInfo {
+  string mountPoint = 1;
+  int64 usableSpace = 2;
+  int64 avgFlushTime = 3;
+  int64 usedSlots = 4;
+  int32 status = 5;
+  int64 avgFetchTime = 6;
+  int32 storageType = 7;
+  int64 totalSpace = 8;
+}
+
+message RequestSlotsRequest {
+  string shuffleKey = 1;
+  string hostName = 2;
+  map<string, SlotInfo> workerAllocations = 3;
+}
+
+message SlotInfo{
+  map<string, int32> slot = 1;
+}
+
+message UnregisterShuffleRequest {
+  string shuffleKey = 1;
+}
+
+message BatchUnregisterShuffleRequest {
+  repeated string shuffleKeys = 1;
+}
+
+message HeartbeatInfo {
+  string appId = 1;
+  int64 totalWritten = 2;
+  int64 fileCount = 3;
+  int64 shuffleCount = 4;
+  map<string, int64> shuffleFallbackCounts = 5;
+}
+
+message AppHeartbeatRequest {
+  string appId = 1;
+  int64 time = 2;
+  int64 totalWritten = 3;
+  int64 fileCount = 4;
+  optional int64 shuffleCount = 5;
+  map<string, int64> shuffleFallbackCounts = 6;
+  HeartbeatInfo heartbeatInfo = 7;
+  optional int64 applicationCount = 8;
+  map<string, int64> applicationFallbackCounts = 9;
+}
+
+message AppLostRequest {
+  string appId = 1;
+}
+
+message WorkerExcludeRequest {
+  repeated WorkerAddress workersToAdd = 1;
+  repeated WorkerAddress workersToRemove = 2;
+}
+
+message WorkerLostRequest {
+  string host = 1;
+  int32 rpcPort = 2;
+  int32 pushPort = 3;
+  int32 fetchPort = 4 ;
+  int32 replicatePort = 5;
+}
+
+message WorkerHeartbeatRequest {
+  string host = 1;
+  int32 rpcPort = 2;
+  int32 pushPort = 3;
+  int32 fetchPort = 4;
+  int32 replicatePort = 5;
+  map<string, DiskInfo> disks = 6;
+  int64 time = 7;
+  map<string, ResourceConsumption> userResourceConsumption = 8;
+  map<string, int64> estimatedAppDiskUsage = 9; // deprecated
+  bool highWorkload = 10;
+  optional WorkerStatus workerStatus = 11;
+}
+
+message WorkerStatus {
+  enum State {
+    Normal = 0;
+    Idle = 1;
+    Exit = 2;
+    InDecommissionThenIdle = 3;   // -> Idle
+    InDecommission = 4;       // -> Exit
+    InGraceFul = 5;   // -> Exit
+    InExit = 6;
+  }
+
+  State state = 1;
+  int64 stateStartTime = 2;
+}
+
+message RegisterWorkerRequest {
+  string host = 1;
+  int32 rpcPort = 2;
+  int32 pushPort = 3;
+  int32 fetchPort = 4;
+  int32 replicatePort = 5;
+  map<string, DiskInfo> disks = 6;
+  map<string, ResourceConsumption> userResourceConsumption = 7;
+  int32 internalPort = 8;
+  optional string networkLocation = 9;
+}
+
+message ReportWorkerUnavailableRequest {
+  repeated WorkerAddress unavailable = 1;
+}
+
+message ReportWorkerDecommissionRequest {
+  repeated WorkerAddress workers = 1;
+}
+
+message RemoveWorkersUnavailableInfoRequest {
+  repeated WorkerAddress unavailable = 1;
+}
+
+message WorkerEventRequest {
+  repeated WorkerAddress workerAddress = 1;
+  WorkerEventType workerEventType = 2;
+}
+
+message WorkerAddress {
+  string host = 1;
+  int32 rpcPort = 2;
+  int32 pushPort = 3;
+  int32 fetchPort = 4;
+  int32 replicatePort = 5;
+  int32 internalPort = 6;
+}
+
+message UserIdentifier {
+  string tenantId = 1;
+  string name = 2;
+}
+
+message ResourceConsumption {
+  int64 diskBytesWritten = 1;
+  int64 diskFileCount = 2;
+  int64 hdfsBytesWritten = 3;
+  int64 hdfsFileCount = 4;
+  map<string, ResourceConsumption> subResourceConsumption = 5;
+}
+
+enum Status {
+  UNKNOWN = 0;
+  OK = 1;
+  INTERNAL_ERROR= 2;
+}
+
+message ResourceResponse {
+  Type cmdType = 1; // Type of the command
+
+  optional bool success = 2;
+
+  optional string message = 3;
+
+  Status status = 4;
+}
+
+message ApplicationMetaRequest {
+  string appId = 1;
+  optional string secret = 2;
+}
+
+message ReviseLostShufflesRequest {
+  string appId = 1 ;
+  repeated int32 lostShuffles = 2 ;
+}
+
+message RegisterApplicationInfoRequest {
+  string appId = 1;
+  UserIdentifier userIdentifier = 2;
+  map<string, string> extraInfo = 3;
+}

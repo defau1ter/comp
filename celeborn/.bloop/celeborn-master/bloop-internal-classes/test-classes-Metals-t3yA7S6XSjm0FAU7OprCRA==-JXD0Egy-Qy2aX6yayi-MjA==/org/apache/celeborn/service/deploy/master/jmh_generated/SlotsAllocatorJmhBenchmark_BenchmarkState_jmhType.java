@@ -1,0 +1,4 @@
+package org.apache.celeborn.service.deploy.master.jmh_generated;
+public class SlotsAllocatorJmhBenchmark_BenchmarkState_jmhType extends SlotsAllocatorJmhBenchmark_BenchmarkState_jmhType_B3 {
+}
+

@@ -1,0 +1,174 @@
+# ============================================================================
+# Python
+# ============================================================================
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+*.py[cod]
+*$py.class
+
+# ============================================================================
+# Virtual Environments
+# ============================================================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+path/to/venv/
+*/venv/
+*/env/
+**/venv/
+
+# ============================================================================
+# IDE and Editors
+# ============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.ipr
+.iws
+.project
+.classpath
+.settings/
+.ensime
+.ensime_cache/
+.bsp/
+
+# ============================================================================
+# Logs and Output
+# ============================================================================
+*.log
+logs/
+*.out
+celeborn/logs/
+celeborn/pids/
+celeborn/log/
+
+# ============================================================================
+# Credentials and Sensitive Files (CRITICAL - DO NOT COMMIT)
+# ============================================================================
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials.json
+credentials.yaml
+.env
+.env.local
+.env.*.local
+*.secrets
+*secret*
+*credentials*
+
+# Actual Celeborn config files that may contain credentials
+# Note: celeborn-defaults.conf is now cleaned and can be committed
+celeborn/conf/celeborn-env.sh
+celeborn/conf/dynamicConfig.yaml
+celeborn/conf/hosts
+celeborn/conf/log4j2.xml
+celeborn/conf/metrics.properties
+celeborn/conf/ratis-log4j.properties
+
+# Uncomment the line below if you add actual credentials to celeborn-defaults.conf
+# celeborn/conf/celeborn-defaults.conf
+
+# ============================================================================
+# Celeborn Build and Runtime
+# ============================================================================
+celeborn/target/
+celeborn/*/target/
+celeborn/**/target/
+celeborn/work/
+celeborn/tmp/
+celeborn/derby.log
+celeborn/metastore_db/
+celeborn/spark-warehouse/
+celeborn/.flattened-pom.xml
+celeborn/.generated-mima*
+celeborn/dependency-reduced-pom.xml
+
+# Symlinks created for runtime
+celeborn/master-jars
+celeborn/worker-jars
+celeborn/cli-jars
+
+# Maven
+celeborn/build/apache-maven-*
+celeborn/build/sbt-launch-*.jar
+
+# ============================================================================
+# Temporary and Cache
+# ============================================================================
+tmp/
+*.tmp
+*.temp
+.cache/
+cache/
+*.swp
+*.swo
+
+# ============================================================================
+# OS Specific
+# ============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================================
+# Archives
+# ============================================================================
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.rar
+*.7z
+*.gz
+
+# ============================================================================
+# Keep Template Files
+# ============================================================================
+!celeborn/conf/*.template
+!**/*.template
+
+# ============================================================================
+# Compilation and Build Artifacts
+# ============================================================================
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
